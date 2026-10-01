@@ -1,0 +1,145 @@
+/* 
+  =========================================
+  1. BASE STYLES & RESET
+  =========================================
+*/
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  
+  /* සුමටව වර්ණ මාරු වීම සඳහා Transition එක */
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  transition: var(--theme-transition);
+}
+
+/* Scrollbar වසන් කිරීමේ Utility Class එක */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* 
+  =========================================
+  2. LIGHT MODE VARIABLES (Default)
+  =========================================
+*/
+:root, [data-theme="light"] {
+  /* Backgrounds */
+  --bg-main: #f8fafc;
+  --bg-panel: #ffffff;
+  --bg-hover: #f1f5f9;
+  --bg-active: #eff6ff;
+  --bg-canvas: #e2e8f0; /* 🔴 Canvas එක තරමක් අඳුරු කර ඇත */
+
+  /* Text Colors */
+  --text-primary: #0f172a;
+  --text-secondary: #475569; /* 🔴 Label අකුරු වඩාත් පැහැදිලි කර ඇත */
+  --text-accent: #2563eb;
+  
+  /* Borders */
+  --border-color: #cbd5e1; /* 🔴 Input Field වල මායිම් පැහැදිලිව පෙනීමට වෙනස් කර ඇත */
+  --border-focus: #3b82f6; /* 🔴 Focus වර්ණය නිල් පාට කර ඇත */
+  --border-active: #bfdbfe;
+
+  /* Components */
+  --btn-bg: #f8fafc;
+  --input-bg: #ffffff;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.05);
+  --shadow-modal: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+/* 
+  =========================================
+  3. DARK MODE VARIABLES
+  =========================================
+*/
+[data-theme="dark"] {
+  /* Backgrounds */
+  --bg-main: #0f172a;      /* තද නිල්/කළු පසුබිම */
+  --bg-panel: #1e293b;     /* පැනල් වල පසුබිම (තරමක් ලා කළු) */
+  --bg-hover: #334155;     /* Hover කරන විට */
+  --bg-active: #1e3a8a;    /* Select කළ විට තද නිල් */
+  --bg-canvas: #020617;    /* Canvas එකේ කළු පැහැය */
+
+  /* Text Colors */
+  --text-primary: #f8fafc; /* සුදු අකුරු */
+  --text-secondary: #94a3b8;/* අළු අකුරු */
+  --text-accent: #60a5fa;  /* ලා නිල් */
+  
+  /* Borders */
+  --border-color: #334155; /* තද අළු මායිම් */
+  --border-focus: #60a5fa;
+  --border-active: #3b82f6;
+
+  /* Components */
+  --btn-bg: #1e293b;
+  --input-bg: #0f172a;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
+  --shadow-modal: 0 25px 50px -12px rgba(0,0,0,0.7);
+}
+
+/* 
+  =========================================
+  4. GENERAL COMPONENT STYLES
+  =========================================
+*/
+input, select, textarea, button {
+  font-family: inherit;
+  transition: var(--theme-transition);
+}
+
+/* Print කරන විට මුද්‍රණය නොවිය යුතු කොටස් */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* 
+  =========================================
+  5. GLOBAL INPUT & FOCUS STYLES (NEW)
+  =========================================
+*/
+input[type="number"], 
+input[type="text"], 
+input[type="color"],
+select {
+  border: 1px solid var(--border-color) !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="number"]:focus, 
+input[type="text"]:focus, 
+select:focus {
+  border-color: var(--border-focus) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2) !important; 
+  outline: none;
+}
+
+/* Input Fields ඇතුළේ ඇති කුඩා ඊතල (Spinners) ලස්සන කිරීමට */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1; 
+  cursor: pointer;
+}
